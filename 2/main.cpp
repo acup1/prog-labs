@@ -1,6 +1,8 @@
 #include "func.cpp"
 #include "func.h"
 
+const int NMAX = 10000;
+
 int main() {
   // инициализация переменных
   int **matr;
