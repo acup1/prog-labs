@@ -1,4 +1,23 @@
-#include "func.cpp"
+#include <fstream>
+#include <iostream>
+
+using namespace std;
+
+const int NMAX = 1000;
+
+// Заголовки функций
+void error(int code); // обработчик ошибок
+
+// задание матрицы из файла
+int defMatr(const char fname[], int matr[][NMAX], int &N);
+
+void delMatr(int matr[][NMAX], int &N); // очистка матрицы
+
+// печать матрицы
+void printMatr(const char matr_name[], int matr[][NMAX], int N);
+
+int task1(int matr[][NMAX], int N); // первое задание
+int task2(int matr[][NMAX], int N); // второе задание
 
 int main() {
   // инициализация переменных
@@ -7,12 +26,177 @@ int main() {
 
   // решение задач для первой матрицы
   error(defMatr("matr_A.txt", matr, N));
-  printMatr("A", matr, N); // эхо-печать матрицы
+  printMatr("A", matr, N); // печать матрицы
   error(task1(matr, N));
   error(task2(matr, N));
 
-  // удаление матрицы
+  // очистка матрицы
   delMatr(matr, N);
+
+  // решение задач для второй матрицы
+  error(defMatr("matr_B.txt", matr, N));
+  printMatr("B", matr, N); // печать матрицы
+  error(task1(matr, N));
+  error(task2(matr, N));
+
+  // очистка матрицы
+  delMatr(matr, N);
+
+  return 0;
+}
+
+// Реализации функций
+
+// обработчик ошибок
+void error(int code) {
+  // выход из функции в случае нулевого кода
+  if (code == 0)
+    return;
+
+  cout << "ERROR: ";
+  switch (code) {
+  case 1:
+    cout << "Не удалось открыть файл!\n";
+    break;
+  case 2:
+    cout << "Непредвиденный конец файла!\n";
+    break;
+  case 3:
+    cout << "Задан неверный размер матрицы или превышен лимит!\n";
+    break;
+  case 4:
+    cout << "Матрица не содержит положительных элементов над побочной "
+            "диагональю!\n";
+    break;
+  }
+  // выход из программы с ошибкой
+  exit(code);
+}
+
+// функция задания матрицы из файла
+int defMatr(const char fname[], int matr[][NMAX], int &N) {
+  // инициализация переменных
+  ifstream fin;
+  fin.open(fname);
+
+  // входной контроль
+  if (!fin)
+    return 1;
+
+  if (!fin.eof())
+    fin >> N;
+  else
+    return 2;
+
+  if (N <= 0 or N > NMAX)
+    return 3;
+
+  // задание матрицы из файла
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) {
+      if (!fin.eof()) // проверка конца файла
+        fin >> matr[i][j];
+      else
+        return 2;
+    }
+  }
+
+  fin.close(); // закрытие файла
+  return 0;
+}
+
+// очистка матрицы
+void delMatr(int matr[][NMAX], int &N) {
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++)
+      matr[i][j] = 0;
+  N = 0;
+}
+
+// печать матрицы
+void printMatr(const char matr_name[], int matr[][NMAX], int N) {
+  cout << "\n" << matr_name << "[" << N << "x" << N << "]=\n";
+  for (int i = 0; i < N; i++) {
+
+    cout << "\t";
+
+    for (int j = 0; j < N; j++) {
+      cout << matr[i][j] << "\t";
+    }
+
+    // печать скобок
+    if (i == 0)
+      cout << "╮\r╭";
+    else if (i == N - 1)
+      cout << "╯\r╰";
+    else
+      cout << "│\r│";
+
+    cout << "\n";
+  }
+}
+
+// первое задание: поиск произведения всех
+// подожительных чисел над побочной диагональю
+int task1(int matr[][NMAX], int N) {
+  cout << "\n";
+
+  // инициализация переменных
+  int p = 1;
+  bool is_elements = false;
+
+  // поиск элементов и подсчёт произведения
+  for (int i = 0; i < N - 1; i++) {
+    for (int j = 0; j < N - 1; j++) {
+      if ((i < (N - 1 - j)) and matr[i][j] > 0) {
+        p *= matr[i][j];
+        is_elements = true;
+      }
+    }
+  }
+
+  // проверка на положительные элементы
+  if (is_elements) {
+    cout << "Задание 1.\n";
+    cout << "\tПроизведение всех положительных\n\tчисел над побочной "
+            "диагональю равно "
+         << p << endl;
+  } else
+    return 4;
+
+  return 0;
+}
+
+// второе задание: поиск максимума среди сумм
+// по строкам нечётных элементов матрицы
+int task2(int matr[][NMAX], int N) {
+  cout << "\nЗадание 2.\n";
+  cout << "\tСуммы по строкам нечётных элементов матрицы равны:\n";
+
+  // инициализация переменных
+  int oddRowSums[N];
+
+  // посчёт и вывод сумм
+  for (int i = 0; i < N; i++) {
+    oddRowSums[i] = 0;
+    for (int j = 0; j < N; j++) {
+      if (matr[i][j] % 2 != 0)
+        oddRowSums[i] += matr[i][j];
+    }
+    cout << "\t\toddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
+  }
+
+  // инициализация переменных
+  int maxi = 0;
+  int max = oddRowSums[0];
+  // поиск максимума
+  for (int i = 0; i < N; i++) {
+    if (oddRowSums[i] > max) {
+      max = oddRowSums[i];
+      maxi = i;
+    }
+  }
+  cout << "\n\tmax(oddRowSums)=oddRowSums[" << maxi << "]=" << max << "\n";
 
   return 0;
 }

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int NMAX = 10000;
+const int NMAX = 1000;
 
 // обработчик ошибок
 void error(int code) {
@@ -20,7 +20,7 @@ void error(int code) {
     cout << "Непредвиденный конец файла!\n";
     break;
   case 3:
-    cout << "Задан неверный размер матрицы!\n";
+    cout << "Задан неверный размер матрицы или превышен лимит!\n";
     break;
   case 4:
     cout << "Матрица не содержит положительных элементов над побочной "
@@ -46,13 +46,11 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
   else
     return 2;
 
-  if (N <= 0)
+  if (N <= 0 or N > NMAX)
     return 3;
 
-  // задание динамической матрицы из файла
-  matr = new int *[N];
+  // задание матрицы из файла
   for (int i = 0; i < N; i++) {
-    matr[i] = new int[N];
     for (int j = 0; j < N; j++) {
       if (!fin.eof()) // проверка конца файла
         fin >> matr[i][j];
@@ -60,20 +58,21 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
         return 2;
     }
   }
+
+  fin.close(); // закрытие файла
   return 0;
 }
 
-// удаление матрицы
-void delMatr(int **matr, int &N) {
-  for (int i = 0; i < N; i++) {
-    delete[] matr[i];
-  }
-  delete[] matr;
+// очистка матрицы
+void delMatr(int matr[][NMAX], int &N) {
+  for (int i = 0; i < N; i++)
+    for (int j = 0; j < N; j++)
+      matr[i][j] = 0;
   N = 0;
 }
 
 // печать матрицы
-void printMatr(const char matr_name[], int **matr, int N) {
+void printMatr(const char matr_name[], int matr[][NMAX], int N) {
   cout << "\n" << matr_name << "[" << N << "x" << N << "]=\n";
   for (int i = 0; i < N; i++) {
 
@@ -97,7 +96,7 @@ void printMatr(const char matr_name[], int **matr, int N) {
 
 // первое задание: поиск произведения всех
 // подожительных чисел над побочной диагональю
-int task1(int **matr, int N) {
+int task1(int matr[][NMAX], int N) {
   cout << "\n";
 
   // инициализация переменных
@@ -128,7 +127,7 @@ int task1(int **matr, int N) {
 
 // второе задание: поиск максимума среди сумм
 // по строкам нечётных элементов матрицы
-int task2(int **matr, int N) {
+int task2(int matr[][NMAX], int N) {
   cout << "\nЗадание 2.\n";
   cout << "\tСуммы по строкам нечётных элементов матрицы равны:\n";
 
