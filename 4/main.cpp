@@ -21,5 +21,8 @@ int main() {
   error(task1(matr, N));
   error(task2(matr, N));
 
+  // удаление матрицы
+  delMatr(matr, N);
+
   return 0;
 }
