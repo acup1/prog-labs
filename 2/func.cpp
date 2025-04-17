@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const int NMAX = 10000;
+
 // обработчик ошибок
 void error(int code) {
   // выход из функции в случае нулевого кода
@@ -30,7 +32,7 @@ void error(int code) {
 }
 
 // функция задания матрицы из файла
-int defMatr(const char fname[], int **&matr, int &N) {
+int defMatr(const char fname[], int matr[][NMAX], int &N) {
   // инициализация переменных
   ifstream fin;
   fin.open(fname);

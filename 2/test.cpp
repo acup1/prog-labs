@@ -2,11 +2,11 @@
 
 using namespace std;
 
-const int NMAX = 10000;
+const int NMAX = 1000;
 
-void printMatr(int **&matr, int size) {
+void printMatr(int matr[][NMAX], int size) {
   for (int i = 0; i < size; i++) {
-    for (int j = 0; i < size; j++) {
+    for (int j = 0; j < size; j++) {
       cout << matr[i][j] << "\t";
     }
     cout << "\n";
@@ -14,8 +14,9 @@ void printMatr(int **&matr, int size) {
 }
 
 int main() {
-  int a[10][10];
-  printMatr(a, 10);
+  int a[NMAX][NMAX];
+
+  printMatr(a, 5);
 
   return 0;
 }

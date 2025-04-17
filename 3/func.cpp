@@ -58,6 +58,7 @@ int defMatr(const char fname[], int **&matr, int &N) {
         return 2;
     }
   }
+  fin.close();
   return 0;
 }
 

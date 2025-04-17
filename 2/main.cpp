@@ -1,11 +1,8 @@
 #include "func.cpp"
-#include "func.h"
-
-const int NMAX = 10000;
 
 int main() {
   // инициализация переменных
-  int **matr;
+  int matr[NMAX][NMAX];
   int N;
 
   // решение задач для первой матрицы
@@ -16,12 +13,6 @@ int main() {
 
   // удаление матрицы
   delMatr(matr, N);
-
-  // решение задач для второй матрицы
-  error(defMatr("matr_B.txt", matr, N));
-  printMatr("B", matr, N); // эхо-печать матрицы
-  error(task1(matr, N));
-  error(task2(matr, N));
 
   return 0;
 }
