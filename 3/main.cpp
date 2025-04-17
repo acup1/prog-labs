@@ -1,3 +1,5 @@
+// Creators: Порошин Г. А. , Прошин Е. С.
+
 #include "func.cpp"
 #include "func.h"
 
