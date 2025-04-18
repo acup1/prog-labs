@@ -139,7 +139,7 @@ void printMatr(const char matr_name[], int matr[][NMAX], int N) {
 }
 
 // первое задание: поиск произведения всех
-// подожительных чисел над побочной диагональю
+// положительных чисел над побочной диагональю
 int task1(int matr[][NMAX], int N) {
   cout << "\n";
 
