@@ -24,9 +24,13 @@ int main() {
     return 1;
   }
 
-  if (!fin.eof())
+  if (!fin.eof()) {
     fin >> N;
-  else {
+    if (fin.fail()) {
+      cout << "получено не число!\n";
+      return 4;
+    }
+  } else {
     cout << "Непредвиденный конец файла!\n";
     return 2;
   }
@@ -39,9 +43,13 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      if (!fin.eof())
+      if (!fin.eof()) {
         fin >> matr[i][j];
-      else {
+        if (fin.fail()) {
+          cout << "получено не число!\n";
+          return 4;
+        }
+      } else {
         cout << "Непредвиденный конец файла!\n";
         return 2;
       }
@@ -96,7 +104,7 @@ int main() {
   } else {
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
-    return 4;
+    return 5;
   }
 
   // второе задание: поиск максимума среди сумм
@@ -149,9 +157,13 @@ int main() {
     return 1;
   }
 
-  if (!fin.eof())
+  if (!fin.eof()) {
     fin >> N;
-  else {
+    if (fin.fail()) {
+      cout << "получено не число!\n";
+      return 4;
+    }
+  } else {
     cout << "Непредвиденный конец файла!\n";
     return 2;
   }
@@ -164,9 +176,13 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      if (!fin.eof())
+      if (!fin.eof()) {
         fin >> matr[i][j];
-      else {
+        if (fin.fail()) {
+          cout << "получено не число!\n";
+          return 4;
+        }
+      } else {
         cout << "Непредвиденный конец файла!\n";
         return 2;
       }
@@ -221,7 +237,7 @@ int main() {
   } else {
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
-    return 4;
+    return 5;
   }
 
   // второе задание: поиск максимума среди сумм
