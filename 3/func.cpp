@@ -129,6 +129,20 @@ int task1(int **matr, int N, int &prod) {
   return 0;
 }
 
+// поиск максимума вектора
+int findMax(int *massive, int N) {
+  // инициализация переменных
+  int maxi = 0;
+  int max = massive[0];
+  // поиск максимума
+  for (int i = 0; i < N; i++) {
+    if (massive[i] > max) {
+      max = massive[i];
+      maxi = i;
+    }
+  }
+  return max;
+}
 // второе задание: поиск максимума среди сумм
 // по строкам нечётных элементов матрицы
 int task2(int **matr, int N, int &max) {
@@ -145,16 +159,7 @@ int task2(int **matr, int N, int &max) {
     cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
 
-  // инициализация переменных
-  int maxi = 0;
-  max = oddRowSums[0];
-  // поиск максимума
-  for (int i = 0; i < N; i++) {
-    if (oddRowSums[i] > max) {
-      max = oddRowSums[i];
-      maxi = i;
-    }
-  }
+  max = findMax(oddRowSums, N);
 
   return 0;
 }

@@ -201,6 +201,21 @@ int task1(int matr[][NMAX], int N, int &prod) {
   return 0;
 }
 
+// поиск максимума вектора
+int findMax(int *massive, int N) {
+  // инициализация переменных
+  int maxi = 0;
+  int max = massive[0];
+  // поиск максимума
+  for (int i = 0; i < N; i++) {
+    if (massive[i] > max) {
+      max = massive[i];
+      maxi = i;
+    }
+  }
+  return max;
+}
+
 // второе задание: поиск максимума среди сумм
 // по строкам нечётных элементов матрицы
 int task2(int matr[][NMAX], int N, int &max) {
@@ -221,18 +236,4 @@ int task2(int matr[][NMAX], int N, int &max) {
   max = findMax(oddRowSums, N);
 
   return 0;
-}
-
-int findMax(int *massive, int N) {
-  // инициализация переменных
-  int maxi = 0;
-  int max = massive[0];
-  // поиск максимума
-  for (int i = 0; i < N; i++) {
-    if (massive[i] > max) {
-      max = massive[i];
-      maxi = i;
-    }
-  }
-  return max;
 }

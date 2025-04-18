@@ -5,3 +5,4 @@ void printMatr(const char matr_name[], int **matr, int N); // печать ма�
 void printRes(const char out[], int res);                  // печать результата
 int task1(int **matr, int N, int &prod);                   // задание 1
 int task2(int **matr, int N, int &max);                    // задание 2
+int findMax(int *massive, int N); // поиск максимума вектора
