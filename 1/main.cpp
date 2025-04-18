@@ -6,8 +6,8 @@
 using namespace std;
 
 const int NMAX = 1000;
-const char FNAME1[] = "matr_A.txt";
-const char FNAME2[] = "matr_B.txt";
+const char FNAME1[] = "matr_A1.txt";
+const char FNAME2[] = "matr_B1.txt";
 
 int main() {
   // инициализация переменных
@@ -170,7 +170,7 @@ int main() {
   fin.close(); // закрытие файла
 
   // вывод матрицы
-  cout << "\nA[" << N << "x" << N << "]=\n";
+  cout << "\nB[" << N << "x" << N << "]=\n";
   for (int i = 0; i < N; i++) {
 
     cout << "\t";
