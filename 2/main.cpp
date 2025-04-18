@@ -26,6 +26,8 @@ void printRes(const char out[], int res); // печать результата
 int task1(int matr[][NMAX], int N, int &prod); // первое задание
 int task2(int matr[][NMAX], int N, int &max);  // второе задание
 
+int findMax(int *massive, int N); // поиск максимума вектора
+
 int main() {
   // инициализация переменных
   int matr[NMAX][NMAX];
@@ -51,7 +53,7 @@ int main() {
   // очистка матрицы
   delMatr(matr, N);
 
-    // решение задач для первой матрицы
+  // решение задач для первой матрицы
   err_code = defMatr(FNAME2, matr, N);
   error(err_code);
   printMatr("B", matr, N); // печать матрицы
@@ -68,7 +70,6 @@ int main() {
 
   // очистка матрицы
   delMatr(matr, N);
-
 
   return 0;
 }
@@ -195,7 +196,7 @@ int task1(int matr[][NMAX], int N, int &prod) {
 
   // проверка на положительные элементы
   if (!is_elements)
-    return 4;
+    return 5;
 
   return 0;
 }
@@ -217,16 +218,21 @@ int task2(int matr[][NMAX], int N, int &max) {
     cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
 
+  max = findMax(oddRowSums, N);
+
+  return 0;
+}
+
+int findMax(int *massive, int N) {
   // инициализация переменных
   int maxi = 0;
-  max = oddRowSums[0];
+  int max = massive[0];
   // поиск максимума
   for (int i = 0; i < N; i++) {
-    if (oddRowSums[i] > max) {
-      max = oddRowSums[i];
+    if (massive[i] > max) {
+      max = massive[i];
       maxi = i;
     }
   }
-
-  return 0;
+  return max;
 }

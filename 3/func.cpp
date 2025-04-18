@@ -124,7 +124,7 @@ int task1(int **matr, int N, int &prod) {
 
   // проверка на положительные элементы
   if (!is_elements)
-    return 4;
+    return 5;
 
   return 0;
 }
