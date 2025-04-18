@@ -172,6 +172,7 @@ void printMatr(const char matr_name[], int matr[][NMAX], int N) {
   }
 }
 
+// печать результата
 void printRes(const char out[], int res) { cout << out << " " << res << "\n"; }
 
 // первое задание: поиск произведения всех
