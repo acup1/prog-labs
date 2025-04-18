@@ -6,7 +6,7 @@
 using namespace std;
 
 const int NMAX = 1000;
-const char FNAME1[] = "matr_A.txt";
+const char FNAME1[] = "test.txt";
 const char FNAME2[] = "matr_B.txt";
 
 int main() {
