@@ -21,38 +21,54 @@ void delMatr(int matr[][NMAX], int &N); // очистка матрицы
 // печать матрицы
 void printMatr(const char matr_name[], int matr[][NMAX], int N);
 
-int task1(int matr[][NMAX], int N); // первое задание
-int task2(int matr[][NMAX], int N); // второе задание
+void printRes(const char out[], int res); // печать результата
+
+int task1(int matr[][NMAX], int N, int &prod); // первое задание
+int task2(int matr[][NMAX], int N, int &max);  // второе задание
 
 int main() {
   // инициализация переменных
   int matr[NMAX][NMAX];
   int N;
   int err_code;
+  int res;
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME1, matr, N);
   error(err_code);
   printMatr("A", matr, N); // печать матрицы
-  err_code = task1(matr, N);
+  err_code = task1(matr, N, res);
   error(err_code);
-  err_code = task2(matr, N);
+  printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+           "побочной диагональю равно",
+           res);
+  err_code = task2(matr, N, res);
   error(err_code);
+  printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+           "матрицы равен",
+           res);
 
   // очистка матрицы
   delMatr(matr, N);
 
-  // решение задач для второй матрицы
+    // решение задач для первой матрицы
   err_code = defMatr(FNAME2, matr, N);
   error(err_code);
   printMatr("A", matr, N); // печать матрицы
-  err_code = task1(matr, N);
+  err_code = task1(matr, N, res);
   error(err_code);
-  err_code = task2(matr, N);
+  printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+           "побочной диагональю равно",
+           res);
+  err_code = task2(matr, N, res);
   error(err_code);
+  printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+           "матрицы равен",
+           res);
 
   // очистка матрицы
   delMatr(matr, N);
+
 
   return 0;
 }
@@ -156,13 +172,15 @@ void printMatr(const char matr_name[], int matr[][NMAX], int N) {
   }
 }
 
+void printRes(const char out[], int res) { cout << out << " " << res << "\n"; }
+
 // первое задание: поиск произведения всех
 // положительных чисел над побочной диагональю
-int task1(int matr[][NMAX], int N) {
+int task1(int matr[][NMAX], int N, int &prod) {
   cout << "\n";
 
   // инициализация переменных
-  int prod = 1;
+  prod = 1;
   bool is_elements = false;
 
   // поиск элементов и подсчёт произведения
@@ -176,12 +194,7 @@ int task1(int matr[][NMAX], int N) {
   }
 
   // проверка на положительные элементы
-  if (is_elements) {
-    cout << "Задание 1.\n";
-    cout << "\tПроизведение всех положительных\n\tчисел над побочной "
-            "диагональю равно "
-         << prod << endl;
-  } else
+  if (!is_elements)
     return 4;
 
   return 0;
@@ -189,9 +202,7 @@ int task1(int matr[][NMAX], int N) {
 
 // второе задание: поиск максимума среди сумм
 // по строкам нечётных элементов матрицы
-int task2(int matr[][NMAX], int N) {
-  cout << "\nЗадание 2.\n";
-  cout << "\tСуммы по строкам нечётных элементов матрицы равны:\n";
+int task2(int matr[][NMAX], int N, int &max) {
 
   // инициализация переменных
   int oddRowSums[N];
@@ -203,12 +214,12 @@ int task2(int matr[][NMAX], int N) {
       if (matr[i][j] % 2 != 0)
         oddRowSums[i] += matr[i][j];
     }
-    cout << "\t\toddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
+    cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
 
   // инициализация переменных
   int maxi = 0;
-  int max = oddRowSums[0];
+  max = oddRowSums[0];
   // поиск максимума
   for (int i = 0; i < N; i++) {
     if (oddRowSums[i] > max) {
@@ -216,7 +227,6 @@ int task2(int matr[][NMAX], int N) {
       maxi = i;
     }
   }
-  cout << "\n\tmax(oddRowSums)=oddRowSums[" << maxi << "]=" << max << "\n";
 
   return 0;
 }
