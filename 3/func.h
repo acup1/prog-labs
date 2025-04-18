@@ -3,5 +3,5 @@ int defMatr(const char fname[], int **&matr, int &N);      // задание м�
 void delMatr(int **matr, int &N);                          // удаление матрицы
 void printMatr(const char matr_name[], int **matr, int N); // печать матрицы
 void printRes(const char out[], int res);                  // печать результата
-int task1(int **matr, int N);                              // задание 1
-int task2(int **matr, int N);                              // задание 2
+int task1(int **matr, int N, int &prod);                   // задание 1
+int task2(int **matr, int N, int &max);                    // задание 2
