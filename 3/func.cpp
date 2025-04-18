@@ -14,9 +14,6 @@ void error(int code) {
   case 1:
     cout << "Не удалось открыть файл!\n";
     break;
-  case 2:
-    cout << "Непредвиденный конец файла!\n";
-    break;
   case 3:
     cout << "Задан неверный размер матрицы!\n";
     break;
@@ -42,12 +39,9 @@ int defMatr(const char fname[], int **&matr, int &N) {
   if (!fin)
     return 1;
 
-  if (!fin.eof()) {
-    fin >> N;
-    if (fin.fail())
-      return 4;
-  } else
-    return 2;
+  fin >> N;
+  if (fin.fail())
+    return 4;
 
   if (N <= 0)
     return 3;
@@ -57,12 +51,9 @@ int defMatr(const char fname[], int **&matr, int &N) {
   for (int i = 0; i < N; i++) {
     matr[i] = new int[N];
     for (int j = 0; j < N; j++) {
-      if (!fin.eof()) { // проверка конца файла
-        fin >> matr[i][j];
-        if (fin.fail())
-          return 4;
-      } else
-        return 2;
+      fin >> matr[i][j];
+      if (fin.fail())
+        return 4;
     }
   }
   fin.close();

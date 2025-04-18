@@ -6,7 +6,7 @@
 using namespace std;
 
 const int NMAX = 1000;
-const char FNAME1[] = "test.txt";
+const char FNAME1[] = "matr_A.txt";
 const char FNAME2[] = "matr_B.txt";
 
 int main() {
@@ -24,15 +24,10 @@ int main() {
     return 1;
   }
 
-  if (!fin.eof()) {
-    fin >> N;
-    if (fin.fail()) {
-      cout << "Получено не число!\n";
-      return 4;
-    }
-  } else {
-    cout << "Непредвиденный конец файла!\n";
-    return 2;
+  fin >> N;
+  if (fin.fail()) {
+    cout << "Получено не число!\n";
+    return 4;
   }
 
   // считывает размера и матрицы из файла
@@ -43,15 +38,10 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      if (!fin.eof()) {
-        fin >> matr[i][j];
-        if (fin.fail()) {
-          cout << "Получено не число!\n";
-          return 4;
-        }
-      } else {
-        cout << "Непредвиденный конец файла!\n";
-        return 2;
+      fin >> matr[i][j];
+      if (fin.fail()) {
+        cout << "Получено не число!\n";
+        return 4;
       }
     }
   }
@@ -156,15 +146,10 @@ int main() {
     return 1;
   }
 
-  if (!fin.eof()) {
-    fin >> N;
-    if (fin.fail()) {
-      cout << "получено не число!\n";
-      return 4;
-    }
-  } else {
-    cout << "Непредвиденный конец файла!\n";
-    return 2;
+  fin >> N;
+  if (fin.fail()) {
+    cout << "получено не число!\n";
+    return 4;
   }
 
   // считывает размера и матрицы из файла
@@ -175,15 +160,10 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
-      if (!fin.eof()) {
-        fin >> matr[i][j];
-        if (fin.fail()) {
-          cout << "получено не число!\n";
-          return 4;
-        }
-      } else {
-        cout << "Непредвиденный конец файла!\n";
-        return 2;
+      fin >> matr[i][j];
+      if (fin.fail()) {
+        cout << "получено не число!\n";
+        return 4;
       }
     }
   }
