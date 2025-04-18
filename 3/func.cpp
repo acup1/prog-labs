@@ -137,10 +137,7 @@ int task1(int **matr, int N) {
 
 // второе задание: поиск максимума среди сумм
 // по строкам нечётных элементов матрицы
-int task2(int **matr, int N) {
-  cout << "\nЗадание 2.\n";
-  cout << "\tСуммы по строкам нечётных элементов матрицы равны:\n";
-
+int task2(int **matr, int N, int &max) {
   // инициализация переменных
   int oddRowSums[N];
 
@@ -151,12 +148,12 @@ int task2(int **matr, int N) {
       if (matr[i][j] % 2 != 0)
         oddRowSums[i] += matr[i][j];
     }
-    cout << "\t\toddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
+    cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
 
   // инициализация переменных
   int maxi = 0;
-  int max = oddRowSums[0];
+  max = oddRowSums[0];
   // поиск максимума
   for (int i = 0; i < N; i++) {
     if (oddRowSums[i] > max) {
@@ -164,7 +161,6 @@ int task2(int **matr, int N) {
       maxi = i;
     }
   }
-  cout << "\n\tmax(oddRowSums)=oddRowSums[" << maxi << "]=" << max << "\n";
 
   return 0;
 }
