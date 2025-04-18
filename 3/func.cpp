@@ -21,6 +21,9 @@ void error(int code) {
     cout << "Задан неверный размер матрицы!\n";
     break;
   case 4:
+    cout << "Получено не число!\n";
+    break;
+  case 5:
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
     break;
@@ -39,9 +42,11 @@ int defMatr(const char fname[], int **&matr, int &N) {
   if (!fin)
     return 1;
 
-  if (!fin.eof())
+  if (!fin.eof()) {
     fin >> N;
-  else
+    if (fin.fail())
+      return 4;
+  } else
     return 2;
 
   if (N <= 0)
@@ -52,9 +57,11 @@ int defMatr(const char fname[], int **&matr, int &N) {
   for (int i = 0; i < N; i++) {
     matr[i] = new int[N];
     for (int j = 0; j < N; j++) {
-      if (!fin.eof()) // проверка конца файла
+      if (!fin.eof()) { // проверка конца файла
         fin >> matr[i][j];
-      else
+        if (fin.fail())
+          return 4;
+      } else
         return 2;
     }
   }

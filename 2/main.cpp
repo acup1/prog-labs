@@ -5,7 +5,10 @@
 
 using namespace std;
 
+// Объявление констант
 const int NMAX = 1000;
+const char *FNAME1 = "matr_A.txt";
+const char *FNAME2 = "matr_B.txt";
 
 // Заголовки функций
 void error(int code); // обработчик ошибок
@@ -25,21 +28,28 @@ int main() {
   // инициализация переменных
   int matr[NMAX][NMAX];
   int N;
+  int err_code;
 
   // решение задач для первой матрицы
-  error(defMatr("matr_A.txt", matr, N));
+  err_code = defMatr(FNAME1, matr, N);
+  error(err_code);
   printMatr("A", matr, N); // печать матрицы
-  error(task1(matr, N));
-  error(task2(matr, N));
+  err_code = task1(matr, N);
+  error(err_code);
+  err_code = task2(matr, N);
+  error(err_code);
 
   // очистка матрицы
   delMatr(matr, N);
 
   // решение задач для второй матрицы
-  error(defMatr("matr_B.txt", matr, N));
-  printMatr("B", matr, N); // печать матрицы
-  error(task1(matr, N));
-  error(task2(matr, N));
+  err_code = defMatr(FNAME2, matr, N);
+  error(err_code);
+  printMatr("A", matr, N); // печать матрицы
+  err_code = task1(matr, N);
+  error(err_code);
+  err_code = task2(matr, N);
+  error(err_code);
 
   // очистка матрицы
   delMatr(matr, N);
@@ -67,6 +77,9 @@ void error(int code) {
     cout << "Задан неверный размер матрицы или превышен лимит!\n";
     break;
   case 4:
+    cout << "Получено не число!\n";
+    break;
+  case 5:
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
     break;
@@ -85,9 +98,11 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
   if (!fin)
     return 1;
 
-  if (!fin.eof())
+  if (!fin.eof()) {
     fin >> N;
-  else
+    if (fin.fail())
+      return 4;
+  } else
     return 2;
 
   if (N <= 0 or N > NMAX)
@@ -97,8 +112,11 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
       if (!fin.eof()) // проверка конца файла
+      {
         fin >> matr[i][j];
-      else
+        if (fin.fail())
+          return 4;
+      } else
         return 2;
     }
   }
