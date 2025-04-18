@@ -162,14 +162,14 @@ int task1(int matr[][NMAX], int N) {
   cout << "\n";
 
   // инициализация переменных
-  int p = 1;
+  int prod = 1;
   bool is_elements = false;
 
   // поиск элементов и подсчёт произведения
   for (int i = 0; i < N - 1; i++) {
     for (int j = 0; j < N - 1; j++) {
       if ((i < (N - 1 - j)) and matr[i][j] > 0) {
-        p *= matr[i][j];
+        prod *= matr[i][j];
         is_elements = true;
       }
     }
@@ -180,7 +180,7 @@ int task1(int matr[][NMAX], int N) {
     cout << "Задание 1.\n";
     cout << "\tПроизведение всех положительных\n\tчисел над побочной "
             "диагональю равно "
-         << p << endl;
+         << prod << endl;
   } else
     return 4;
 

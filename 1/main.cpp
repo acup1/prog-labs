@@ -27,7 +27,7 @@ int main() {
   if (!fin.eof()) {
     fin >> N;
     if (fin.fail()) {
-      cout << "получено не число!\n";
+      cout << "Получено не число!\n";
       return 4;
     }
   } else {
@@ -46,7 +46,7 @@ int main() {
       if (!fin.eof()) {
         fin >> matr[i][j];
         if (fin.fail()) {
-          cout << "получено не число!\n";
+          cout << "Получено не число!\n";
           return 4;
         }
       } else {
@@ -82,14 +82,14 @@ int main() {
   cout << "\n";
 
   // инициализация переменных
-  int p = 1;
+  int prod = 1;
   bool is_elements = false;
 
   // поиск элементов и подсчёт произведения
   for (int i = 0; i < N - 1; i++) {
     for (int j = 0; j < N - 1; j++) {
       if ((i < (N - 1 - j)) and matr[i][j] > 0) {
-        p *= matr[i][j];
+        prod *= matr[i][j];
         is_elements = true;
       }
     }
@@ -100,7 +100,7 @@ int main() {
     cout << "Задание 1.\n";
     cout << "\tПроизведение всех положительных\n\tчисел над побочной "
             "диагональю равно "
-         << p << endl;
+         << prod << endl;
   } else {
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
@@ -215,14 +215,14 @@ int main() {
   cout << "\n";
 
   // инициализация переменных
-  p = 1;
+  prod = 1;
   is_elements = false;
 
   // поиск элементов и подсчёт произведения
   for (int i = 0; i < N - 1; i++) {
     for (int j = 0; j < N - 1; j++) {
       if ((i < (N - 1 - j)) and matr[i][j] > 0) {
-        p *= matr[i][j];
+        prod *= matr[i][j];
         is_elements = true;
       }
     }
@@ -233,7 +233,7 @@ int main() {
     cout << "Задание 1.\n";
     cout << "\tПроизведение всех положительных\n\tчисел над побочной "
             "диагональю равно "
-         << p << endl;
+         << prod << endl;
   } else {
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
