@@ -3,27 +3,37 @@
 #include "func.cpp"
 #include "func.h"
 
+const char *FNAME1 = "matr_A.txt";
+const char *FNAME2 = "matr_B.txt";
+
 int main() {
   // инициализация переменных
   int **matr;
   int N;
+  int err_code;
 
   // решение задач для первой матрицы
-  error(defMatr("matr_A.txt", matr, N));
-  printMatr("A", matr, N); // эхо-печать матрицы
-  error(task1(matr, N));
-  error(task2(matr, N));
+  err_code = defMatr(FNAME1, matr, N);
+  error(err_code);
+  printMatr("A", matr, N); // печать матрицы
+  err_code = task1(matr, N);
+  error(err_code);
+  err_code = task2(matr, N);
+  error(err_code);
 
-  // удаление матрицы
+  // очистка матрицы
   delMatr(matr, N);
 
   // решение задач для второй матрицы
-  error(defMatr("matr_B.txt", matr, N));
-  printMatr("B", matr, N); // эхо-печать матрицы
-  error(task1(matr, N));
-  error(task2(matr, N));
+  err_code = defMatr(FNAME2, matr, N);
+  error(err_code);
+  printMatr("A", matr, N); // печать матрицы
+  err_code = task1(matr, N);
+  error(err_code);
+  err_code = task2(matr, N);
+  error(err_code);
 
-  // удаление матрицы
+  // очистка матрицы
   delMatr(matr, N);
 
   return 0;
