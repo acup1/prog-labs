@@ -106,11 +106,10 @@ void printRes(const char out[], int res) { cout << out << " " << res << "\n"; }
 
 // первое задание: поиск произведения всех
 // положительных чисел над побочной диагональю
-int task1(int **matr, int N) {
-  cout << "\n";
-
+int task1(int **matr, int N, int &prod) {
+  //
   // инициализация переменных
-  int prod = 1;
+  prod = 1;
   bool is_elements = false;
 
   // поиск элементов и подсчёт произведения
@@ -124,12 +123,7 @@ int task1(int **matr, int N) {
   }
 
   // проверка на положительные элементы
-  if (is_elements) {
-    cout << "Задание 1.\n";
-    cout << "\tПроизведение всех положительных\n\tчисел над побочной "
-            "диагональю равно "
-         << prod << endl;
-  } else
+  if (!is_elements)
     return 4;
 
   return 0;

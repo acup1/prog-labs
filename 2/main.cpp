@@ -54,7 +54,7 @@ int main() {
     // решение задач для первой матрицы
   err_code = defMatr(FNAME2, matr, N);
   error(err_code);
-  printMatr("A", matr, N); // печать матрицы
+  printMatr("B", matr, N); // печать матрицы
   err_code = task1(matr, N, res);
   error(err_code);
   printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
