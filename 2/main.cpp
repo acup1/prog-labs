@@ -9,11 +9,12 @@ using namespace std;
 const int NMAX = 1000;
 
 // корректные
-const char FNAME1[] = "matr_A.txt";
-const char FNAME2[] = "matr_B.txt";
+// const char FNAME1[] = "matr_A.txt";
+// const char FNAME2[] = "matr_B.txt";
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
-// const char FNAME1[] = "matr_even2.txt";
+const char FNAME1[] = "matr_even2.txt";
+const char FNAME2[] = "matr_even3.txt";
 
 // некорректные
 //  const char FNAME1[] = "nonexistent";
