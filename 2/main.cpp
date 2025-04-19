@@ -13,12 +13,12 @@ const int NMAX = 1000;
 // const char FNAME2[] = "matr_B.txt";
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
-const char FNAME1[] = "matr_even2.txt";
+// const char FNAME1[] = "matr_even2.txt";
 const char FNAME2[] = "matr_even3.txt";
 
 // некорректные
-//  const char FNAME1[] = "nonexistent";
-//  const char FNAME1[] = "eof.txt";
+// const char FNAME1[] = "nonexistent";
+const char FNAME1[] = "eof.txt";
 //  const char FNAME1[] = "matr_char.txt";
 //  const char FNAME1[] = "matr_-2.txt";
 //  const char FNAME1[] = "matr_A-.txt";
@@ -51,47 +51,59 @@ int main() {
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME1, matr, N);
-  error(err_code);         // проверяем наличие ошибки
-  printMatr("A", matr, N); // печать матрицы
+  error(err_code); // проверяем наличие ошибки
 
-  // решение первой задачи
-  err_code = task1(matr, N, res);
-  error(err_code);
-  printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
-           "побочной диагональю равно",
-           res);
+  if (err_code == 0) {
+    printMatr("A", matr, N); // печать матрицы
 
-  // решение второй задачи
-  err_code = task2(matr, N, res);
-  error(err_code);
-  printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
-           "матрицы равен",
-           res);
+    // решение первой задачи
+    err_code = task1(matr, N, res);
+    error(err_code);
+    printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+             "побочной диагональю равно",
+             res);
+  }
 
-  // очистка матрицы
-  delMatr(matr, N);
+  if (err_code == 0) {
+    // решение второй задачи
+    err_code = task2(matr, N, res);
+    error(err_code);
+    printRes(
+        "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+        "матрицы равен",
+        res);
+
+    // очистка матрицы
+    delMatr(matr, N);
+  }
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME2, matr, N);
-  error(err_code);
-  printMatr("B", matr, N); // печать матрицы
+  error(err_code); // проверяем наличие ошибки
 
-  // решение первой задачи
-  err_code = task1(matr, N, res);
-  error(err_code);
-  printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
-           "побочной диагональю равно",
-           res);
+  if (err_code == 0) {
+    printMatr("B", matr, N); // печать матрицы
 
-  // решение второй задачи
-  err_code = task2(matr, N, res);
-  error(err_code);
-  printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
-           "матрицы равен",
-           res);
+    // решение первой задачи
+    err_code = task1(matr, N, res);
+    error(err_code);
+    printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+             "побочной диагональю равно",
+             res);
+  }
 
-  // очистка матрицы
-  delMatr(matr, N);
+  if (err_code == 0) {
+    // решение второй задачи
+    err_code = task2(matr, N, res);
+    error(err_code);
+    printRes(
+        "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+        "матрицы равен",
+        res);
+
+    // очистка матрицы
+    delMatr(matr, N);
+  }
 
   return 0;
 }
@@ -100,9 +112,9 @@ int main() {
 
 // обработчик ошибок
 void error(int code) {
-  // выход из функции в случае нулевого кода
   if (code == 0)
     return;
+  cout << "ERROR: ";
 
   switch (code) {
   case 1:
@@ -125,8 +137,6 @@ void error(int code) {
     cout << "Матрица не содержит нечётные элементы!\n";
     break;
   }
-  // выход из программы с ошибкой
-  exit(code);
 }
 
 // функция задания матрицы из файла
@@ -134,6 +144,7 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
   // инициализация переменных
   ifstream fin;
   fin.open(fname);
+  cout << "DEFMATR: считывание из файла " << fname << "\n";
 
   // входной контроль
   if (!fin)
