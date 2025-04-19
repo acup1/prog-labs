@@ -45,15 +45,17 @@ int main() {
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME1, matr, N);
-  error(err_code);
+  error(err_code);         // проверяем наличие ошибки
   printMatr("A", matr, N); // печать матрицы
 
+  // решение первой задачи
   err_code = task1(matr, N, res);
   error(err_code);
   printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
            "побочной диагональю равно",
            res);
 
+  // решение второй задачи
   err_code = task2(matr, N, res);
   error(err_code);
   printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
@@ -68,12 +70,14 @@ int main() {
   error(err_code);
   printMatr("B", matr, N); // печать матрицы
 
+  // решение первой задачи
   err_code = task1(matr, N, res);
   error(err_code);
   printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
            "побочной диагональю равно",
            res);
 
+  // решение второй задачи
   err_code = task2(matr, N, res);
   error(err_code);
   printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
