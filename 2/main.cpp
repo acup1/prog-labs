@@ -47,11 +47,13 @@ int main() {
   err_code = defMatr(FNAME1, matr, N);
   error(err_code);
   printMatr("A", matr, N); // печать матрицы
+
   err_code = task1(matr, N, res);
   error(err_code);
   printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
            "побочной диагональю равно",
            res);
+
   err_code = task2(matr, N, res);
   error(err_code);
   printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
@@ -65,11 +67,13 @@ int main() {
   err_code = defMatr(FNAME2, matr, N);
   error(err_code);
   printMatr("B", matr, N); // печать матрицы
+
   err_code = task1(matr, N, res);
   error(err_code);
   printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
            "побочной диагональю равно",
            res);
+
   err_code = task2(matr, N, res);
   error(err_code);
   printRes("Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
@@ -94,6 +98,9 @@ void error(int code) {
   switch (code) {
   case 1:
     cout << "Не удалось открыть файл!\n";
+    break;
+  case 2:
+    cout << "Встречен непредвиденный конец файла!\n";
     break;
   case 3:
     cout << "Задан неверный размер матрицы или превышен лимит!\n";
@@ -121,6 +128,8 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
     return 1;
 
   fin >> N;
+  if (fin.eof())
+    return 2;
   if (fin.fail())
     return 4;
 
@@ -131,6 +140,8 @@ int defMatr(const char fname[], int matr[][NMAX], int &N) {
   for (int i = 0; i < N; i++) {
     for (int j = 0; j < N; j++) {
       fin >> matr[i][j];
+      if (fin.eof())
+        return 2;
       if (fin.fail())
         return 4;
     }
