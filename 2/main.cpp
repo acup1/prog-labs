@@ -7,17 +7,21 @@ using namespace std;
 
 // Объявление констант
 const int NMAX = 1000;
-// const char FNAME1[] = "matr_A1.txt";
-// const char FNAME2[] = "matr_B1.txt";
 
+// корректные
 const char FNAME1[] = "matr_A.txt";
 const char FNAME2[] = "matr_B.txt";
+// const char FNAME1[] = "matr_A1.txt";
+// const char FNAME2[] = "matr_B1.txt";
+// const char FNAME1[] = "matr_even2.txt";
 
-// const char FNAME1[] = "nonexistent";
-// const char FNAME1[] = "eof.txt";
-// const char FNAME1[] = "matr_char.txt";
-// const char FNAME1[] = "matr_-2.txt";
-// const char FNAME1[] = "matr_A-.txt";
+// некорректные
+//  const char FNAME1[] = "nonexistent";
+//  const char FNAME1[] = "eof.txt";
+//  const char FNAME1[] = "matr_char.txt";
+//  const char FNAME1[] = "matr_-2.txt";
+//  const char FNAME1[] = "matr_A-.txt";
+// const char FNAME1[] = "matr_even.txt";
 
 // Заголовки функций
 void error(int code); // обработчик ошибок
@@ -35,7 +39,7 @@ void printRes(const char out[], int res); // печать результата
 int task1(int matr[][NMAX], int N, int &prod); // первое задание
 int task2(int matr[][NMAX], int N, int &max);  // второе задание
 
-int findMax(int *massive, int N); // поиск максимума вектора
+int findMax(int *massive, bool *flags, int N); // поиск максимума вектора
 
 int main() {
   // инициализация переменных
@@ -99,7 +103,6 @@ void error(int code) {
   if (code == 0)
     return;
 
-  cout << "ERROR: ";
   switch (code) {
   case 1:
     cout << "Не удалось открыть файл!\n";
@@ -116,6 +119,9 @@ void error(int code) {
   case 5:
     cout << "Матрица не содержит положительных элементов над побочной "
             "диагональю!\n";
+    break;
+  case 6:
+    cout << "Матрица не содержит нечётные элементы!\n";
     break;
   }
   // выход из программы с ошибкой
@@ -216,13 +222,13 @@ int task1(int matr[][NMAX], int N, int &prod) {
 }
 
 // поиск максимума вектора
-int findMax(int *massive, int N) {
+int findMax(int *massive, bool *flags, int N) {
   // инициализация переменных
   int maxi = 0;
   int max = massive[0];
   // поиск максимума
   for (int i = 0; i < N; i++) {
-    if (massive[i] > max) {
+    if (massive[i] > max and flags[i]) {
       max = massive[i];
       maxi = i;
     }
@@ -236,18 +242,32 @@ int task2(int matr[][NMAX], int N, int &max) {
 
   // инициализация переменных
   int oddRowSums[N];
+  bool oddRowFlag[N];
+  for (int i = 0; i < N; i++)
+    oddRowFlag[i] = false;
+  bool is_elements = false;
 
   // посчёт и вывод сумм
   for (int i = 0; i < N; i++) {
     oddRowSums[i] = 0;
     for (int j = 0; j < N; j++) {
-      if (matr[i][j] % 2 != 0)
+      if (matr[i][j] % 2 != 0) {
         oddRowSums[i] += matr[i][j];
+        oddRowFlag[i] = true;
+        is_elements = true;
+      }
     }
-    cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
+    // эхо-печать
+    if (oddRowFlag[i])
+      cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
 
-  max = findMax(oddRowSums, N);
+  // проверка на наличие нечётных элементов
+  if (!is_elements)
+    return 6;
+
+  // поиск максимума
+  max = findMax(oddRowSums, oddRowFlag, N);
 
   return 0;
 }
