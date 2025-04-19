@@ -3,8 +3,16 @@
 #include "func.cpp"
 #include "func.h"
 
-const char *FNAME1 = "matr_A.txt";
-const char *FNAME2 = "matr_B.txt";
+// const char FNAME1[] = "matr_A1.txt";
+// const char FNAME2[] = "matr_B1.txt";
+
+const char FNAME1[] = "matr_A.txt";
+const char FNAME2[] = "matr_B.txt";
+
+// const char FNAME1[] = "nonexistent";
+// const char FNAME1[] = "matr_char.txt";
+// const char FNAME1[] = "matr_-2.txt";
+// const char FNAME1[] = "matr_A-.txt";
 
 int main() {
   // инициализация переменных
