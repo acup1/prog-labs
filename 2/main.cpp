@@ -225,8 +225,15 @@ int task1(int matr[][NMAX], int N, int &prod) {
 // поиск максимума вектора
 int findMax(int *massive, bool *flags, int N) {
   // инициализация переменных
-  int maxi = 0;
-  int max = massive[0];
+  int maxi;
+  int max;
+  for (int i = 0; i < N; i++) { // ищем первую валидную сумму
+    if (flags[i]) {
+      maxi = i;
+      max = massive[i];
+      break;
+    }
+  }
   // поиск максимума
   for (int i = 0; i < N; i++) {
     if (massive[i] > max and flags[i]) {
