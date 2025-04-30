@@ -49,9 +49,9 @@ int defMatr(const char fname[], int **&matr, int &N) {
   // задание динамической матрицы из файла
   matr = new int *[N];
   for (int i = 0; i < N; i++) {
-    matr[i] = new int[N];
+    *(matr + i) = new int[N];
     for (int j = 0; j < N; j++) {
-      fin >> matr[i][j];
+      fin >> *(*(matr + i) + j);
       if (fin.fail())
         return 4;
     }
@@ -63,7 +63,7 @@ int defMatr(const char fname[], int **&matr, int &N) {
 // удаление матрицы
 void delMatr(int **matr, int &N) {
   for (int i = 0; i < N; i++) {
-    delete[] matr[i];
+    delete[] *(matr + i);
   }
   delete[] matr;
   N = 0;
@@ -77,7 +77,7 @@ void printMatr(const char matr_name[], int **matr, int N) {
     cout << "\t";
 
     for (int j = 0; j < N; j++) {
-      cout << matr[i][j] << "\t";
+      cout << *(*(matr + i) + j) << "\t";
     }
 
     // печать скобок
@@ -106,8 +106,8 @@ int task1(int **matr, int N, int &prod) {
   // поиск элементов и подсчёт произведения
   for (int i = 0; i < N - 1; i++) {
     for (int j = 0; j < N - 1; j++) {
-      if ((i < (N - 1 - j)) and matr[i][j] > 0) {
-        prod *= matr[i][j];
+      if ((i < (N - 1 - j)) and *(*(matr + i) + j) > 0) {
+        prod *= *(*(matr + i) + j);
         is_elements = true;
       }
     }
@@ -144,8 +144,8 @@ int task2(int **matr, int N, int &max) {
   for (int i = 0; i < N; i++) {
     oddRowSums[i] = 0;
     for (int j = 0; j < N; j++) {
-      if (matr[i][j] % 2 != 0)
-        oddRowSums[i] += matr[i][j];
+      if (*(*(matr + i) + j) % 2 != 0)
+        oddRowSums[i] += *(*(matr + i) + j);
     }
     cout << "TASK2: oddRowSums[" << i << "]=" << oddRowSums[i] << "\n";
   }
