@@ -27,29 +27,51 @@ const char FNAME2[] = "matr_B2.txt";
 // const char FNAME1[] = "matr_even.txt";
 
 // Заголовки функций
-void error(int code); // обработчик ошибок
+// обработчик ошибок
+void error(int code); // код ошибки
 
+// FIXME: уровнять коммент
 // задание матрицы из файла
-int defMatr(const char fname[], int matr[][NMAX], int &N);
+int defMatr(const char fname[], // название файла
+            int matr[][NMAX], // указатель на нулевой элемент квадратной матрицы
+            int &N);          // ссылка на размерность матрицы
 
-void delMatr(int matr[][NMAX], int &N); // очистка матрицы
+// очистка матрицы
+void delMatr(int matr[][NMAX], // квадратная матрца
+             int &N);          // ссылка на размерность матрицы
 
 // печать матрицы
-void printMatr(const char matr_name[], int matr[][NMAX], int N);
+void printMatr(
+    const char matr_name[], // название матрицы (A или B)
+    int matr[][NMAX],       // указатель на нулевой элемент квадратной матрицы
+    int N);                 // размерность матрицы
 
-void printRes(const char out[], int res); // печать результата
+// печать результата
+void printRes(const char out[], // строка, выводимая до печати результата
+              int res);         // результат
 
-int task1(int matr[][NMAX], int N, int &prod); // первое задание
-int task2(int matr[][NMAX], int N, int &max);  // второе задание
+// первое задание
+int task1(int matr[][NMAX], // указатель на нулевой элемент квадратной матрицы
+          int N,            // размерность матрицы
+          int &prod);       // ссылка на произведение
 
-int findMax(int *massive, bool *flags, int N); // поиск максимума вектора
+// второе задание
+int task2(int matr[][NMAX], // указатель на нулевой элемент квадратной матрицы
+          int N,            // размерность матрицы
+          int &max);        // ссылка на максимум
+
+// поиск максимума вектора
+int findMax(
+    int *massive, // указатель на вектор значений сумм
+    bool *flags,  // указатель на вектор с флагами наличия элементов суммы
+    int N);       // размерность матрицы
 
 int main() {
   // инициализация переменных
-  int matr[NMAX][NMAX];
-  int N;
-  int err_code;
-  int res;
+  int matr[NMAX][NMAX]; // квадратная матрица
+  int N;                // размерность матрицы
+  int err_code;         // код ошибки
+  int res;              // результат задания
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME1, matr, N);
