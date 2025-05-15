@@ -13,7 +13,7 @@ const int NMAX = 1000;
 // const char FNAME2[] = "matr_B.txt";
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
-const char FNAME1[] = "matr_A2.txt";
+// const char FNAME1[] = "matr_A2.txt";
 const char FNAME2[] = "matr_B2.txt";
 // const char FNAME1[] = "matr_even2.txt";
 // const char FNAME2[] = "matr_even3.txt";
@@ -23,7 +23,7 @@ const char FNAME2[] = "matr_B2.txt";
 // const char FNAME1[] = "eof.txt";
 //  const char FNAME1[] = "matr_char.txt";
 //  const char FNAME1[] = "matr_-2.txt";
-//  const char FNAME1[] = "matr_A-.txt";
+const char FNAME1[] = "matr_A-.txt";
 // const char FNAME1[] = "matr_even.txt";
 
 // Заголовки функций
@@ -77,56 +77,61 @@ int main() {
   err_code = defMatr(FNAME1, matr, N);
   error(err_code); // проверяем наличие ошибки
 
-  if (err_code == 0) {
+  if (!err_code) {
     printMatr("A", matr, N); // печать матрицы
 
     // решение первой задачи
     err_code = task1(matr, N, res);
     error(err_code);
-    printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
-             "побочной диагональю равно",
-             res);
-  }
+    if (!err_code) {
+      printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+               "побочной диагональю равно",
+               res);
+    }
 
-  if (err_code == 0) {
     // решение второй задачи
     err_code = task2(matr, N, res);
     error(err_code);
-    printRes(
-        "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
-        "матрицы равен",
-        res);
 
-    // очистка матрицы
-    delMatr(matr, N);
+    if (!err_code) {
+      printRes(
+          "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+          "матрицы равен",
+          res);
+
+      // очистка матрицы
+      delMatr(matr, N);
+    }
   }
 
   // решение задач для первой матрицы
   err_code = defMatr(FNAME2, matr, N);
   error(err_code); // проверяем наличие ошибки
 
-  if (err_code == 0) {
+  if (!err_code) {
     printMatr("B", matr, N); // печать матрицы
 
     // решение первой задачи
     err_code = task1(matr, N, res);
     error(err_code);
-    printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
-             "побочной диагональю равно",
-             res);
-  }
+    if (!err_code) {
+      printRes("Задание 1.\n\tПроизведение всех положительных\n\tчисел над "
+               "побочной диагональю равно",
+               res);
+    }
 
-  if (err_code == 0) {
     // решение второй задачи
     err_code = task2(matr, N, res);
     error(err_code);
-    printRes(
-        "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
-        "матрицы равен",
-        res);
+    if (!err_code) {
+      printRes(
+          "Задание 2.\n\tМаксимум среди сумм по строкам нечётных\n\tэлементов "
+          "матрицы равен",
+          res);
 
-    // очистка матрицы
-    delMatr(matr, N);
+      // очистка матрицы
+      delMatr(matr, N);
+    }
   }
 
   return 0;

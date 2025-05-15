@@ -6,7 +6,11 @@
 using namespace std;
 
 const int NMAX = 1000;
-const char FNAME1[] = "matr_A1.txt";
+
+// const char FNAME1[] = "matr_eof.txt";
+const char FNAME1[] = "matr_even.txt";
+
+// const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
 
 // const char FNAME1[] = "matr_A.txt";
@@ -35,18 +39,18 @@ int main() {
 
   if (!err_code) {
     fin >> N;
-    if (fin.fail()) {
-      cout << "Получено не число!\n";
-      err_code = 4;
-    }
-
     if (fin.eof()) {
       cout << "Встречен непредвиденный конец файла!\n";
       err_code = 2;
     }
 
+    if (!err_code and fin.fail()) {
+      cout << "Получено не число!\n";
+      err_code = 4;
+    }
+
     // считывает размера и матрицы из файла
-    if (N <= 0 or N > NMAX) {
+    if (!err_code and (N <= 0 or N > NMAX)) {
       cout << "Задан неверный размер матрицы или размер превышает лимит!\n";
       err_code = 3;
     }
