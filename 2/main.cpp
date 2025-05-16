@@ -14,23 +14,25 @@ const int NMAX = 1000;
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
 // const char FNAME1[] = "matr_A2.txt";
-const char FNAME2[] = "matr_B2.txt";
+// const char FNAME2[] = "matr_B2.txt";
+const char FNAME1[] = "matr_A3.txt";
+const char FNAME2[] = "matr_B3.txt";
+
 // const char FNAME1[] = "matr_even2.txt";
 // const char FNAME2[] = "matr_even3.txt";
 
 // некорректные
 // const char FNAME1[] = "nonexistent";
 // const char FNAME1[] = "eof.txt";
-//  const char FNAME1[] = "matr_char.txt";
+// const char FNAME1[] = "matr_char.txt";
 //  const char FNAME1[] = "matr_-2.txt";
-const char FNAME1[] = "matr_A-.txt";
+// const char FNAME1[] = "matr_A-.txt";
 // const char FNAME1[] = "matr_even.txt";
 
 // Заголовки функций
 // обработчик ошибок
 void error(int code); // код ошибки
 
-// FIXME: уровнять коммент
 // задание матрицы из файла
 int defMatr(const char fname[], // название файла
             int matr[][NMAX], // указатель на нулевой элемент квадратной матрицы
