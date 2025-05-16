@@ -19,8 +19,11 @@ int findMax(int *massive, int N); // поиск максимума вектор�
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
 
-const char FNAME1[] = "matr_A2.txt";
-const char FNAME2[] = "matr_B2.txt";
+// const char FNAME1[] = "matr_A2.txt";
+// const char FNAME2[] = "matr_B2.txt";
+
+const char FNAME1[] = "matr_A3.txt";
+const char FNAME2[] = "matr_B3.txt";
 
 // const char FNAME1[] = "matr_A.txt";
 // const char FNAME2[] = "matr_B.txt";
