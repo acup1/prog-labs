@@ -22,37 +22,55 @@
 using namespace std;
 
 // Объявление констант
-const int NMAX = 1000;
+const int NMAX = 9;
 
 // корректные
 // const char FNAME1[] = "matr_A.txt";
 // const char FNAME2[] = "matr_B.txt";
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
-const char FNAME1[] = "matr_A2.txt";
-const char FNAME2[] = "matr_B2.txt";
+// const char FNAME1[] = "matr_A2.txt";
+// const char FNAME2[] = "matr_B2.txt";
 // const char FNAME1[] = "matr_A3.txt";
 // const char FNAME2[] = "matr_B3.txt";
 
 // const char FNAME1[] = "matr_even2.txt";
+
 // const char FNAME2[] = "matr_even3.txt";
+const char FNAME2[] = "matr_odd.txt";
 
 // некорректные
-// const char FNAME1[] = "nonexistent";
-// const char FNAME1[] = "eof.txt";
+//
+// const char FNAME1[] = "nonexistent"; //code1
+//
+// const char FNAME1[] = "eof.txt"; //code2
+//
+// const char FNAME1[] = "matr_-2.txt";
+//
+// const char FNAME1[] = "matr_0.txt";
+//
+const char FNAME1[] = "matr_NMAX.txt";
+//
+// const char FNAME1[] = "matr_NMAX1.txt";
+//
 // const char FNAME1[] = "matr_char.txt";
-//  const char FNAME1[] = "matr_-2.txt";
+//
 // const char FNAME1[] = "matr_A-.txt";
+//
 // const char FNAME1[] = "matr_even.txt";
 
+//////////////////////////////////////////////////////
 // Заголовки функций
+//////////////////////////////////////////////////////
+
 // обработчик ошибок
 void error(int code); // код ошибки
 
 // задание матрицы из файла
-int defMatr(const char fname[], // название файла
-            int matr[][NMAX], // указатель на нулевой элемент квадратной матрицы
-            int &N);          // ссылка на размерность матрицы
+int readMatr(
+    const char fname[], // название файла
+    int matr[][NMAX],   // указатель на нулевой элемент квадратной матрицы
+    int &N);            // ссылка на размерность матрицы
 
 // очистка матрицы
 void delMatr(int matr[][NMAX], // квадратная матрца
@@ -80,9 +98,13 @@ int task2(int matr[][NMAX], // указатель на нулевой элеме
 
 // поиск максимума вектора
 int findMax(
-    int *massive, // указатель на вектор значений сумм
-    bool *flags,  // указатель на вектор с флагами наличия элементов суммы
-    int N);       // размерность матрицы
+    int *vector, // указатель на вектор значений сумм
+    bool *flags, // указатель на вектор с флагами наличия элементов суммы
+    int N);      // размерность матрицы
+
+//////////////////////////////////////////////////////
+// main
+//////////////////////////////////////////////////////
 
 int main() {
   // инициализация переменных
@@ -92,7 +114,7 @@ int main() {
   int res;              // результат задания
 
   // решение задач для первой матрицы
-  err_code = defMatr(FNAME1, matr, N);
+  err_code = readMatr(FNAME1, matr, N);
   error(err_code); // проверяем наличие ошибки
 
   if (!err_code) {
@@ -123,7 +145,7 @@ int main() {
   }
 
   // решение задач для первой матрицы
-  err_code = defMatr(FNAME2, matr, N);
+  err_code = readMatr(FNAME2, matr, N);
   error(err_code); // проверяем наличие ошибки
 
   if (!err_code) {
@@ -155,7 +177,9 @@ int main() {
   return 0;
 }
 
+//////////////////////////////////////////////////////
 // Реализации функций
+//////////////////////////////////////////////////////
 
 // обработчик ошибок
 void error(int code) {
@@ -187,7 +211,7 @@ void error(int code) {
 }
 
 // функция задания матрицы из файла
-int defMatr(const char fname[], int matr[][NMAX], int &N) {
+int readMatr(const char fname[], int matr[][NMAX], int &N) {
   // инициализация переменных
   ifstream fin;
   fin.open(fname);
@@ -253,9 +277,7 @@ void printMatr(const char matr_name[], int matr[][NMAX], int N) {
 }
 
 // печать результата
-void printRes(const char out[], int res) { 
-  cout << out << " " << res << "\n"; 
-}
+void printRes(const char out[], int res) { cout << out << " " << res << "\n"; }
 
 // первое задание: поиск произведения всех
 // положительных чисел над побочной диагональю

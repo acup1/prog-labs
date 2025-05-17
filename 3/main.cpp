@@ -1,17 +1,21 @@
-/*       КАФЕДРА № 304 2 КУРС ПЯВУ СРР П Р А К Т И К А        *
- * __________________________________________________________ *
- * Project Type  : Win32 Console Application                  *
- * Project Name  : Матрицы                                    *
- * File Name     : main.cpp                                   *
- * Language      : C/C++ MS VS ver. 2019 and above            *
- * Programmer(s) : Порошин Г.А. Прошин Е.С.                   *
- * Modified By   :                                            *
- * Created       : 18/04/25                                   *
- * Last Revision : 05/05/25                                   *
- * Lit Sourse    :                                            *
- * Comment(s)    :                                            *
- * Временной интервал : 120 минут                             *
- *************************************************************/
+/*
+╭────────────────────────────────────────────────────────────╮
+│        КАФЕДРА № 304 2 КУРС ПЯВУ С/РР П Р А К Т И К А      │
+├────────────────────────────────────────────────────────────┤
+│ Project Type  : linux64 Console Application                │
+│ Project Name  : Матрицы                                    │
+│ File Name     : main.cpp                                   │
+│ Language      : C/C++ MS VS ver. 2019 and above            │
+│ Programmer(s) : Порошин Г.А. Прошин Е.С.                   │
+│ Modified By   :                                            │
+│ Created       : 18/04/25                                   │
+│ Last Revision : 05/05/25                                   │
+│ Lit Sourse    :                                            │
+│ Comment(s)    :                                            │
+│ Временной интервал : 145 минут                             │
+╰────────────────────────────────────────────────────────────╯
+*/
+
 #include <fstream>
 #include <iostream>
 
@@ -26,7 +30,7 @@ void printMatr(const char matr_name[], int **matr, int N); // печать ма�
 void printRes(const char out[], int res);                  // печать результата
 int task1(int **matr, int N, int &prod);                   // задание 1
 int task2(int **matr, int N, int &max);                    // задание 2
-int findMax(int *massive, int N); // поиск максимума вектора
+int findMax(int *massive, int N);                          // поиск максимума вектора
 
 // const char FNAME1[] = "matr_A1.txt";
 // const char FNAME2[] = "matr_B1.txt";
