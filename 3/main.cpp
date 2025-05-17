@@ -1,5 +1,17 @@
-// Creators: Порошин Г. А. , Прошин Е. С.
-
+/*       КАФЕДРА № 304 2 КУРС ПЯВУ СРР П Р А К Т И К А        *
+ * __________________________________________________________ *
+ * Project Type  : Win32 Console Application                  *
+ * Project Name  : Матрицы                                    *
+ * File Name     : main.cpp                                   *
+ * Language      : C/C++ MS VS ver. 2019 and above            *
+ * Programmer(s) : Порошин Г.Ф. Прошин Е.С.                   *
+ * Modified By   :                                            *
+ * Created       : 18/04/25                                   *
+ * Last Revision : 05/05/25                                   *
+ * Lit Sourse    :                                            *
+ * Comment(s)    :                                            *
+ * Временной интервал : 120 минут                             *
+ *************************************************************/
 #include <fstream>
 #include <iostream>
 
