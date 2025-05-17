@@ -40,7 +40,8 @@ const int NMAX = 9;
 // const char FNAME2[] = "matr_odd.txt";
 
 const char FNAME1[] = "matr_NMAX.txt";
-const char FNAME2[] = "matr_7.txt";
+// const char FNAME2[] = "matr_7.txt";
+const char FNAME2[] = "matr_1.txt";
 
 // некорректные
 //
