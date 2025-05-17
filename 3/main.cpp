@@ -21,7 +21,45 @@
 
 using namespace std;
 
-// заголовки функций
+// корректные
+// const char FNAME1[] = "matr_A.txt";
+// const char FNAME2[] = "matr_B.txt";
+// const char FNAME1[] = "matr_A1.txt";
+// const char FNAME2[] = "matr_B1.txt";
+// const char FNAME1[] = "matr_A2.txt";
+// const char FNAME2[] = "matr_B2.txt";
+// const char FNAME1[] = "matr_A3.txt";
+// const char FNAME2[] = "matr_B3.txt";
+
+// const char FNAME1[] = "matr_even2.txt";
+
+// const char FNAME2[] = "matr_even3.txt";
+// const char FNAME2[] = "matr_odd.txt";
+
+const char FNAME1[] = "matr_NMAX.txt";
+const char FNAME2[] = "matr_7.txt";
+
+// некорректные
+//
+// const char FNAME1[] = "nonexistent"; //code1
+//
+// const char FNAME1[] = "eof.txt"; //code2
+//
+// const char FNAME1[] = "matr_-2.txt";
+//
+// const char FNAME1[] = "matr_0.txt";
+//
+// const char FNAME1[] = "matr_NMAX1.txt";
+//
+// const char FNAME1[] = "matr_char.txt";
+//
+// const char FNAME1[] = "matr_A-.txt";
+//
+// const char FNAME1[] = "matr_even.txt";
+
+//////////////////////////////////////////////////////
+// Заголовки функций
+//////////////////////////////////////////////////////
 
 void error(int code);                                      // обработчик ошибок
 int defMatr(const char fname[], int **&matr, int &N);      // задание матрицы
@@ -30,24 +68,11 @@ void printMatr(const char matr_name[], int **matr, int N); // печать ма�
 void printRes(const char out[], int res);                  // печать результата
 int task1(int **matr, int N, int &prod);                   // задание 1
 int task2(int **matr, int N, int &max);                    // задание 2
-int findMax(int *massive, int N);                          // поиск максимума вектора
+int findMax(int *massive, int N); // поиск максимума вектора
 
-// const char FNAME1[] = "matr_A1.txt";
-// const char FNAME2[] = "matr_B1.txt";
-
-// const char FNAME1[] = "matr_A2.txt";
-// const char FNAME2[] = "matr_B2.txt";
-
-const char FNAME1[] = "matr_A3.txt";
-const char FNAME2[] = "matr_B3.txt";
-
-// const char FNAME1[] = "matr_A.txt";
-// const char FNAME2[] = "matr_B.txt";
-
-// const char FNAME1[] = "nonexistent";
-// const char FNAME1[] = "matr_char.txt";
-// const char FNAME1[] = "matr_-2.txt";
-// const char FNAME1[] = "matr_A-.txt";
+//////////////////////////////////////////////////////
+// main
+//////////////////////////////////////////////////////
 
 int main() {
   // инициализация переменных
@@ -120,7 +145,9 @@ int main() {
   return 0;
 }
 
-// реализации функций
+//////////////////////////////////////////////////////
+// Реализации функций
+//////////////////////////////////////////////////////
 
 // обработчик ошибок
 void error(int code) {
